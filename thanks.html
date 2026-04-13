@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submitted!</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1a1a2e;
+      --accent: #7c3aed;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 480px;
+    }
+    .emoji { font-size: 3rem; margin-bottom: 1rem; }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p { color: var(--muted); line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="emoji">✅</div>
+    <h1>You're all set!</h1>
+    <p>Your answers have been sent to Sami. She'll use these to build your personalized AI agent. Sit tight — your new assistant is on the way.</p>
+  </div>
+</body>
+</html>
