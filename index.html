@@ -1,263 +1,1095 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Assistant Agent — Intake Form</title>
-  <style>
-    :root {
-      --bg: #0f0f0f;
-      --card: #1a1a2e;
-      --accent: #7c3aed;
-      --accent-hover: #6d28d9;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --border: #334155;
-      --input-bg: #0f172a;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 2rem 1rem;
-    }
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #7c3aed, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .subtitle {
-      color: var(--muted);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-    }
-    .section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .section h2 {
-      font-size: 1.15rem;
-      margin-bottom: 0.25rem;
-      color: #a78bfa;
-    }
-    .section .desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-      font-size: 0.9rem;
-    }
-    .hint {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    input[type="text"],
-    input[type="email"],
-    textarea,
-    select {
-      width: 100%;
-      padding: 0.65rem 0.85rem;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 0.9rem;
-      margin-bottom: 1.1rem;
-      transition: border-color 0.2s;
-    }
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    textarea { resize: vertical; min-height: 90px; }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    @media (max-width: 520px) {
-      .row { grid-template-columns: 1fr; }
-    }
-    button[type="submit"] {
-      display: block;
-      width: 100%;
-      padding: 0.85rem;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    button[type="submit"]:hover { background: var(--accent-hover); }
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.75rem;
-      margin-top: 2rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EWO Team Member Profile — Paul</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface-2: #242836;
+    --border: #2e3345;
+    --accent: #6c63ff;
+    --accent-hover: #7b73ff;
+    --accent-glow: rgba(108, 99, 255, 0.15);
+    --text: #e8e9ed;
+    --text-muted: #8b8fa3;
+    --text-dim: #5c6078;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --gold: #d4a853;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 40px 24px 100px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: var(--accent-glow);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    padding: 12px 0 8px;
+    margin-bottom: 32px;
+  }
+  .progress-bar-outer {
+    height: 4px;
+    background: var(--surface-2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
+  /* Sections */
+  .section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+  .section-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* Question cards */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .q-card label.q-label {
+    display: block;
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .q-hint {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  /* Inputs */
+  input[type="text"], input[type="email"], input[type="url"], input[type="number"],
+  textarea, select {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+  select { cursor: pointer; }
+  select option { background: var(--surface-2); color: var(--text); }
+
+  /* Checkboxes / Radio styled as chips */
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .chip-group label:hover { border-color: var(--accent); }
+  .chip-group input:checked + span { color: var(--accent); }
+  .chip-group input:checked ~ span { color: var(--accent); }
+  .chip-group label:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+  .chip-group input { display: none; }
+
+  /* Slider */
+  .slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .slider-wrap input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    background: var(--surface-2);
+    border-radius: 3px;
+    border: none;
+    outline: none;
+  }
+  .slider-wrap input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .slider-val {
+    min-width: 32px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* Buttons */
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+  .btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+  }
+  .btn-back {
+    background: var(--surface-2);
+    color: var(--text-muted);
+  }
+  .btn-back:hover { color: var(--text); }
+  .btn-next {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-next:hover { background: var(--accent-hover); }
+  .btn-next:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 36px;
+  }
+  .btn-submit:hover { opacity: 0.9; }
+
+  /* Results page */
+  .results-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .results-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--gold);
+  }
+  pre.json-output {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 12px;
+    overflow-x: auto;
+    color: var(--text-muted);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .copy-btn:hover { color: var(--text); border-color: var(--accent); }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px 80px; }
+    .header h1 { font-size: 22px; }
+    .q-card { padding: 18px; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>🤖 Personal Assistant Agent — Intake</h1>
-    <p class="subtitle">Help us build an AI agent tailored to you. Answer honestly — there are no wrong answers.</p>
 
-    <form action="https://formsubmit.co/samanthaerbe2@gmail.com" method="POST">
-      <!-- FormSubmit config -->
-      <input type="hidden" name="_subject" value="New PA Agent Intake Submission">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://sami-rae4444.github.io/pa-intake-form/thanks.html">
-      <input type="text" name="_honey" style="display:none">
-
-      <!-- SECTION 1: BASICS -->
-      <div class="section">
-        <h2>1. About You</h2>
-        <p class="desc">Basic info so the agent knows who it's working with.</p>
-
-        <div class="row">
-          <div>
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="Full Name" required>
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="Email" required>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="nickname">What should the agent call you?</label>
-            <input type="text" id="nickname" name="Preferred Name" required>
-          </div>
-          <div>
-            <label for="timezone">Timezone</label>
-            <select id="timezone" name="Timezone" required>
-              <option value="">Select...</option>
-              <option value="US/Eastern">Eastern (ET)</option>
-              <option value="US/Central">Central (CT)</option>
-              <option value="US/Mountain">Mountain (MT)</option>
-              <option value="US/Pacific">Pacific (PT)</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
-
-        <label for="role">What's your role / what do you do?</label>
-        <p class="hint">Job title, business, freelancer, etc.</p>
-        <input type="text" id="role" name="Role" required>
-      </div>
-
-      <!-- SECTION 2: WORK STYLE -->
-      <div class="section">
-        <h2>2. How You Work</h2>
-        <p class="desc">So the agent matches your style, not fights it.</p>
-
-        <label for="comm-style">How do you prefer to communicate?</label>
-        <p class="hint">Direct and brief? Detailed? Casual? Formal?</p>
-        <input type="text" id="comm-style" name="Communication Style">
-
-        <label for="tools">What tools do you currently use?</label>
-        <p class="hint">Google Workspace, Notion, GHL, Slack, etc.</p>
-        <textarea id="tools" name="Current Tools"></textarea>
-
-        <label for="schedule">Describe your typical work schedule</label>
-        <p class="hint">Hours, days, when you're most productive</p>
-        <textarea id="schedule" name="Work Schedule"></textarea>
-      </div>
-
-      <!-- SECTION 3: GOALS & PRIORITIES -->
-      <div class="section">
-        <h2>3. Goals &amp; Priorities</h2>
-        <p class="desc">What should the agent help you accomplish?</p>
-
-        <label for="top-goals">What are your top 3 goals right now?</label>
-        <textarea id="top-goals" name="Top 3 Goals" rows="4" required></textarea>
-
-        <label for="bottlenecks">What slows you down the most?</label>
-        <p class="hint">Bottlenecks, time sinks, recurring frustrations</p>
-        <textarea id="bottlenecks" name="Bottlenecks"></textarea>
-
-        <label for="delegate">If you could hand off 3 tasks tomorrow, what would they be?</label>
-        <textarea id="delegate" name="Tasks to Delegate" rows="3"></textarea>
-      </div>
-
-      <!-- SECTION 4: STRENGTHS & ASSETS (Paul-specific but useful for anyone) -->
-      <div class="section">
-        <h2>4. Your Strengths &amp; Assets</h2>
-        <p class="desc">What do you bring to the table? This helps the agent amplify your strengths.</p>
-
-        <label for="strengths">What are you genuinely good at?</label>
-        <p class="hint">Skills, knowledge areas, natural talents — be honest</p>
-        <textarea id="strengths" name="Strengths" rows="4" required></textarea>
-
-        <label for="experience">What industries or domains do you have deep experience in?</label>
-        <textarea id="experience" name="Industry Experience" rows="3"></textarea>
-
-        <label for="network">What connections, relationships, or networks do you have?</label>
-        <p class="hint">Industry contacts, communities, partnerships, etc.</p>
-        <textarea id="network" name="Network & Connections"></textarea>
-
-        <label for="assets">What existing assets do you have?</label>
-        <p class="hint">Content, courses, email lists, IP, real estate, capital, audience, etc.</p>
-        <textarea id="assets" name="Existing Assets" rows="3"></textarea>
-
-        <label for="unique-edge">What's your unfair advantage?</label>
-        <p class="hint">The thing that gives you an edge others don't have</p>
-        <textarea id="unique-edge" name="Unfair Advantage"></textarea>
-      </div>
-
-      <!-- SECTION 5: PERSONALITY & BOUNDARIES -->
-      <div class="section">
-        <h2>5. Personality &amp; Boundaries</h2>
-        <p class="desc">So the agent feels right, not robotic.</p>
-
-        <label for="agent-vibe">What vibe do you want from your agent?</label>
-        <p class="hint">Casual friend? Strict executive assistant? Strategic advisor? Hype man?</p>
-        <input type="text" id="agent-vibe" name="Desired Agent Vibe">
-
-        <label for="pet-peeves">What annoys you in communication?</label>
-        <p class="hint">Over-explaining? Being too casual? Repetition?</p>
-        <textarea id="pet-peeves" name="Communication Pet Peeves" rows="2"></textarea>
-
-        <label for="boundaries">Any boundaries the agent should respect?</label>
-        <p class="hint">Topics to avoid, hours it shouldn't message, etc.</p>
-        <textarea id="boundaries" name="Boundaries" rows="2"></textarea>
-      </div>
-
-      <!-- SECTION 6: OPEN-ENDED -->
-      <div class="section">
-        <h2>6. Anything Else</h2>
-        <p class="desc">Anything we didn't ask that you want the agent to know.</p>
-
-        <label for="anything-else">Free space — tell us whatever matters</label>
-        <textarea id="anything-else" name="Additional Notes" rows="4"></textarea>
-      </div>
-
-      <button type="submit">Submit →</button>
-    </form>
-
-    <p class="footer">Your responses go directly to Sami. Nothing is stored publicly.</p>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">Elevated Wealth Organization</div>
+    <h1>Hey Paul — Let's Find Your Lane</h1>
+    <p>This is a quick inventory of who you are, what you bring to the table, and how we can set you up for success. No wrong answers — just be real.</p>
   </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap">
+    <div class="progress-bar-outer">
+      <div class="progress-bar-inner" id="progressBar"></div>
+    </div>
+    <div class="progress-label">
+      <span id="progressSection">Section 1 of 8</span>
+      <span id="progressPct">0%</span>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 1: THE BASICS ============== -->
+  <div class="section active" data-section="1">
+    <div class="section-header">
+      <div class="section-number">Part 1 of 8</div>
+      <h2>The Basics</h2>
+      <p>Just the quick stuff so we have it on file.</p>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Full name</label>
+      <div class="q-hint">As you'd want it on official company stuff.</div>
+      <input type="text" id="q_name" placeholder="Paul...">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Email you actually check</label>
+      <input type="email" id="q_email" placeholder="paul@...">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Phone number</label>
+      <div class="q-hint">For the team directory. We won't blow you up.</div>
+      <input type="text" id="q_phone" placeholder="(555) 123-4567">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Where are you based?</label>
+      <div class="q-hint">City / State — or "remote nomad" if that's your vibe.</div>
+      <input type="text" id="q_location" placeholder="e.g. Austin, TX">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">LinkedIn profile URL</label>
+      <div class="q-hint">Optional but helpful.</div>
+      <input type="url" id="q_linkedin" placeholder="https://linkedin.com/in/...">
+    </div>
+
+    <div class="btn-row">
+      <div></div>
+      <button class="btn btn-next" onclick="nextSection()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 2: YOUR STORY ============== -->
+  <div class="section" data-section="2">
+    <div class="section-header">
+      <div class="section-number">Part 2 of 8</div>
+      <h2>Your Story</h2>
+      <p>We want to understand where you've been so we can figure out where you fit best.</p>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Give us your 2-minute career story</label>
+      <div class="q-hint">No resume bullet points — just talk to us. Where did you start, what did you do, what are you most proud of?</div>
+      <textarea id="q_career_story" rows="5" placeholder="I started out in... then moved into... the thing I'm most proud of is..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What industries have you worked in?</label>
+      <div class="q-hint">Check all that apply — we're looking for hidden advantages here.</div>
+      <div class="chip-group">
+        <label><input type="checkbox" name="industries" value="Finance / Banking"><span>Finance / Banking</span></label>
+        <label><input type="checkbox" name="industries" value="Real Estate"><span>Real Estate</span></label>
+        <label><input type="checkbox" name="industries" value="Insurance"><span>Insurance</span></label>
+        <label><input type="checkbox" name="industries" value="Tech / SaaS"><span>Tech / SaaS</span></label>
+        <label><input type="checkbox" name="industries" value="Sales / BD"><span>Sales / BD</span></label>
+        <label><input type="checkbox" name="industries" value="Marketing / Advertising"><span>Marketing / Advertising</span></label>
+        <label><input type="checkbox" name="industries" value="Legal"><span>Legal</span></label>
+        <label><input type="checkbox" name="industries" value="Healthcare"><span>Healthcare</span></label>
+        <label><input type="checkbox" name="industries" value="Non-Profit"><span>Non-Profit</span></label>
+        <label><input type="checkbox" name="industries" value="Government / Public Sector"><span>Government / Public Sector</span></label>
+        <label><input type="checkbox" name="industries" value="Consulting"><span>Consulting</span></label>
+        <label><input type="checkbox" name="industries" value="Crypto / Web3"><span>Crypto / Web3</span></label>
+        <label><input type="checkbox" name="industries" value="Other"><span>Other</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">If you checked "Other" — what industry?</label>
+      <input type="text" id="q_other_industry" placeholder="e.g. Agriculture, Entertainment, etc.">
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What's the highest-responsibility role you've held?</label>
+      <div class="q-hint">Title doesn't matter — what were you actually accountable for?</div>
+      <textarea id="q_highest_role" rows="3" placeholder="e.g. I ran a 12-person sales team and was responsible for $4M in annual revenue..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Do you have any licenses, certifications, or credentials?</label>
+      <div class="q-hint">Series 65, CPA, real estate license, anything like that.</div>
+      <textarea id="q_certifications" rows="2" placeholder="e.g. Series 65, Life & Health Insurance License, Notary Public..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevSection()">← Back</button>
+      <button class="btn btn-next" onclick="nextSection()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 3: SKILLS INVENTORY ============== -->
+  <div class="section" data-section="3">
+    <div class="section-header">
+      <div class="section-number">Part 3 of 8</div>
+      <h2>Skills Inventory</h2>
+      <p>Rate yourself honestly — 1 is "never done it" and 10 is "I could teach a masterclass."</p>
+    </div>
+
+    <div class="q-card" id="skills-container">
+      <!-- Skills will be generated by JS -->
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Any skills we didn't list that you're strong in?</label>
+      <div class="q-hint">Tell us what you're good at that might not be obvious.</div>
+      <textarea id="q_hidden_skills" rows="3" placeholder="e.g. I'm really good at reading people, negotiating deals, building spreadsheets..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevSection()">← Back</button>
+      <button class="btn btn-next" onclick="nextSection()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 4: NETWORK & RELATIONSHIPS ============== -->
+  <div class="section" data-section="4">
+    <div class="section-header">
+      <div class="section-number">Part 4 of 8</div>
+      <h2>Network & Relationships</h2>
+      <p>Your network might be the most valuable thing you bring. Let's map it.</p>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How big is your professional network, roughly?</label>
+      <div class="q-hint">LinkedIn connections, contacts in your phone, people who'd pick up if you called.</div>
+      <select id="q_network_size">
+        <option value="">Select one...</option>
+        <option value="< 100">Under 100 people</option>
+        <option value="100–500">100–500 people</option>
+        <option value="500–2000">500–2,000 people</option>
+        <option value="2000–5000">2,000–5,000 people</option>
+        <option value="5000+">5,000+ people</option>
+      </select>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What types of people are in your network?</label>
+      <div class="q-hint">Check all that apply.</div>
+      <div class="chip-group">
+        <label><input type="checkbox" name="network_types" value="High-net-worth individuals"><span>High-net-worth individuals</span></label>
+        <label><input type="checkbox" name="network_types" value="Accredited investors"><span>Accredited investors</span></label>
+        <label><input type="checkbox" name="network_types" value="Business owners / Founders"><span>Business owners / Founders</span></label>
+        <label><input type="checkbox" name="network_types" value="Financial advisors / Planners"><span>Financial advisors / Planners</span></label>
+        <label><input type="checkbox" name="network_types" value="Real estate professionals"><span>Real estate professionals</span></label>
+        <label><input type="checkbox" name="network_types" value="Tech / Engineers"><span>Tech / Engineers</span></label>
+        <label><input type="checkbox" name="network_types" value="Sales professionals"><span>Sales professionals</span></label>
+        <label><input type="checkbox" name="network_types" value="Lawyers / CPAs"><span>Lawyers / CPAs</span></label>
+        <label><input type="checkbox" name="network_types" value="Community / Faith leaders"><span>Community / Faith leaders</span></label>
+        <label><input type="checkbox" name="network_types" value="Corporate executives"><span>Corporate executives</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Do you have relationships with any of these?</label>
+      <div class="q-hint">Check all that apply — these are specific to what we're building.</div>
+      <div class="chip-group">
+        <label><input type="checkbox" name="strategic_contacts" value="Fund managers / GPs"><span>Fund managers / GPs</span></label>
+        <label><input type="checkbox" name="strategic_contacts" value="Family offices"><span>Family offices</span></label>
+        <label><input type="checkbox" name="strategic_contacts" value="RIAs / Broker-dealers"><span>RIAs / Broker-dealers</span></label>
+        <label><input type="checkbox" name="strategic_contacts" value="Angel investor groups"><span>Angel investor groups</span></label>
+        <label><input type="checkbox" name="strategic_contacts" value="Institutional allocators"><span>Institutional allocators</span></label>
+        <label><input type="checkbox" name="strategic_contacts" value="Crowdfunding platforms"><span>Crowdfunding platforms</span></label>
+        <label><input type="checkbox" name="strategic_contacts" value="Media / Podcasters in finance"><span>Media / Podcasters in finance</span></label>
+        <label><input type="checkbox" name="strategic_contacts" value="None of the above"><span>None of the above</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">If you had to raise $100K in 30 days from your network, how confident are you?</label>
+      <div class="slider-wrap">
+        <input type="range" id="q_raise_confidence" min="1" max="10" value="5" oninput="document.getElementById('raise_val').textContent=this.value">
+        <span class="slider-val" id="raise_val">5</span>
+      </div>
+      <div class="slider-labels"><span>No chance</span><span>Already done it</span></div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Who are the 3 most connected or influential people you know personally?</label>
+      <div class="q-hint">First names and what they do is fine. We're looking for leverage points.</div>
+      <textarea id="q_key_contacts" rows="4" placeholder="1. John — runs a real estate fund, knows everyone in Dallas&#10;2. Maria — VP at a bank, connected to institutional money&#10;3. ..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevSection()">← Back</button>
+      <button class="btn btn-next" onclick="nextSection()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 5: AC & INVESTMENT EXPERIENCE ============== -->
+  <div class="section" data-section="5">
+    <div class="section-header">
+      <div class="section-number">Part 5 of 8</div>
+      <h2>AC & Investment Experience</h2>
+      <p>Since AC is where we're thinking about putting you — let's see what you already know.</p>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How familiar are you with alternative investments?</label>
+      <div class="q-hint">Things like private credit, real estate syndications, private equity, etc.</div>
+      <select id="q_alt_invest_familiarity">
+        <option value="">Select one...</option>
+        <option value="Brand new — I've heard the words">Brand new — I've heard the words</option>
+        <option value="Some exposure — I understand the basics">Some exposure — I understand the basics</option>
+        <option value="Experienced — I've invested in or sold these products">Experienced — I've invested in or sold these products</option>
+        <option value="Expert — I've structured deals or run a fund">Expert — I've structured deals or run a fund</option>
+      </select>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Have you ever raised capital from investors?</label>
+      <div class="q-hint">Formally or informally — crowdfunding, syndications, friends & family rounds, anything.</div>
+      <select id="q_capital_raising">
+        <option value="">Select one...</option>
+        <option value="Never">Never</option>
+        <option value="Informally — friends & family type stuff">Informally — friends & family type stuff</option>
+        <option value="Yes — I've raised under $500K">Yes — I've raised under $500K</option>
+        <option value="Yes — I've raised $500K–$2M">Yes — I've raised $500K–$2M</option>
+        <option value="Yes — I've raised over $2M">Yes — I've raised over $2M</option>
+      </select>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What's your experience with financial compliance / regulations?</label>
+      <div class="q-hint">Reg D, Reg A, blue sky laws, accredited investor verification, etc.</div>
+      <select id="q_compliance_exp">
+        <option value="">Select one...</option>
+        <option value="None — I don't know what those are">None — I don't know what those are</option>
+        <option value="Aware — I've heard of them in context">Aware — I've heard of them in context</option>
+        <option value="Working knowledge — I've dealt with these">Working knowledge — I've dealt with these</option>
+        <option value="Deep expertise — I could teach this">Deep expertise — I could teach this</option>
+      </select>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Have you ever worked with a CRM to manage investor relations?</label>
+      <div class="q-hint">HubSpot, Salesforce, DealMaker, Juniper Square, anything.</div>
+      <textarea id="q_crm_experience" rows="2" placeholder="e.g. I used HubSpot for 2 years managing a pipeline of 200+ contacts..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What do you think you'd be best at inside AC?</label>
+      <div class="q-hint">Check all that sound like you.</div>
+      <div class="chip-group">
+        <label><input type="checkbox" name="ac_fit" value="Sourcing investors / raising capital"><span>Sourcing investors / raising capital</span></label>
+        <label><input type="checkbox" name="ac_fit" value="Managing investor relationships"><span>Managing investor relationships</span></label>
+        <label><input type="checkbox" name="ac_fit" value="Deal sourcing / evaluating opportunities"><span>Deal sourcing / evaluating opportunities</span></label>
+        <label><input type="checkbox" name="ac_fit" value="Marketing / content creation"><span>Marketing / content creation</span></label>
+        <label><input type="checkbox" name="ac_fit" value="Operations / keeping the trains running"><span>Operations / keeping the trains running</span></label>
+        <label><input type="checkbox" name="ac_fit" value="Research / due diligence"><span>Research / due diligence</span></label>
+        <label><input type="checkbox" name="ac_fit" value="Not sure yet — that's what this survey is for"><span>Not sure yet — that's what this survey is for</span></label>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevSection()">← Back</button>
+      <button class="btn btn-next" onclick="nextSection()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 6: WORK STYLE & AI READINESS ============== -->
+  <div class="section" data-section="6">
+    <div class="section-header">
+      <div class="section-number">Part 6 of 8</div>
+      <h2>How You Work & AI Readiness</h2>
+      <p>We're going to build some AI tools around you. This helps us know what to build.</p>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How would you describe your work style?</label>
+      <div class="q-hint">Check your top 2-3.</div>
+      <div class="chip-group">
+        <label><input type="checkbox" name="work_style" value="I need clear instructions and SOPs"><span>I need clear instructions and SOPs</span></label>
+        <label><input type="checkbox" name="work_style" value="Point me at a goal, I'll figure it out"><span>Point me at a goal, I'll figure it out</span></label>
+        <label><input type="checkbox" name="work_style" value="I'm best in conversations / on the phone"><span>I'm best in conversations / on the phone</span></label>
+        <label><input type="checkbox" name="work_style" value="I'm a deep researcher / analytical"><span>I'm a deep researcher / analytical</span></label>
+        <label><input type="checkbox" name="work_style" value="I thrive with a team around me"><span>I thrive with a team around me</span></label>
+        <label><input type="checkbox" name="work_style" value="I'm a solo operator — just give me space"><span>I'm a solo operator — just give me space</span></label>
+        <label><input type="checkbox" name="work_style" value="I'm a builder — I like creating systems"><span>I'm a builder — I like creating systems</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What tools do you currently use for work?</label>
+      <div class="q-hint">Check everything you're comfortable with.</div>
+      <div class="chip-group">
+        <label><input type="checkbox" name="tools" value="Google Workspace"><span>Google Workspace</span></label>
+        <label><input type="checkbox" name="tools" value="Microsoft Office"><span>Microsoft Office</span></label>
+        <label><input type="checkbox" name="tools" value="Slack"><span>Slack</span></label>
+        <label><input type="checkbox" name="tools" value="Zoom / Google Meet"><span>Zoom / Google Meet</span></label>
+        <label><input type="checkbox" name="tools" value="CRM (any)"><span>CRM (any)</span></label>
+        <label><input type="checkbox" name="tools" value="Social media for business"><span>Social media for business</span></label>
+        <label><input type="checkbox" name="tools" value="ChatGPT / Claude / AI tools"><span>ChatGPT / Claude / AI tools</span></label>
+        <label><input type="checkbox" name="tools" value="Canva / Design tools"><span>Canva / Design tools</span></label>
+        <label><input type="checkbox" name="tools" value="Project management (Asana, Notion, etc.)"><span>Project management (Asana, Notion, etc.)</span></label>
+        <label><input type="checkbox" name="tools" value="Spreadsheets (advanced)"><span>Spreadsheets (advanced)</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How comfortable are you with AI tools right now?</label>
+      <div class="slider-wrap">
+        <input type="range" id="q_ai_comfort" min="1" max="10" value="5" oninput="document.getElementById('ai_val').textContent=this.value">
+        <span class="slider-val" id="ai_val">5</span>
+      </div>
+      <div class="slider-labels"><span>What's a prompt?</span><span>I build agents</span></div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">If we built you an AI assistant that could do ONE thing for you every day, what would it be?</label>
+      <div class="q-hint">Dream big. What's the task you hate or the thing you wish you could clone yourself for?</div>
+      <textarea id="q_ai_wish" rows="3" placeholder="e.g. Follow up with every lead I talked to this week and personalize each message..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What's your biggest time-waster right now?</label>
+      <div class="q-hint">The thing that eats your hours but doesn't move the needle.</div>
+      <textarea id="q_time_waster" rows="2" placeholder="e.g. Formatting documents, chasing people for responses, manually tracking things..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevSection()">← Back</button>
+      <button class="btn btn-next" onclick="nextSection()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 7: PERSONALITY & COMMUNICATION (for SOUL/AGENT files) ============== -->
+  <div class="section" data-section="7">
+    <div class="section-header">
+      <div class="section-number">Part 7 of 8</div>
+      <h2>How You Think & Communicate</h2>
+      <p>This helps us build tools that actually sound like you and work the way your brain works.</p>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">When you explain something important, how do you usually do it?</label>
+      <div class="chip-group">
+        <label><input type="radio" name="comm_style" value="Stories and analogies — I paint a picture"><span>Stories and analogies — I paint a picture</span></label>
+        <label><input type="radio" name="comm_style" value="Data and facts — show me the numbers"><span>Data and facts — show me the numbers</span></label>
+        <label><input type="radio" name="comm_style" value="Direct and concise — cut to the point"><span>Direct and concise — cut to the point</span></label>
+        <label><input type="radio" name="comm_style" value="Empathetic and relational — connect first"><span>Empathetic and relational — connect first</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How do you handle conflict or pushback?</label>
+      <div class="chip-group">
+        <label><input type="radio" name="conflict_style" value="Head-on — let's hash it out"><span>Head-on — let's hash it out</span></label>
+        <label><input type="radio" name="conflict_style" value="Diplomatically — find the middle ground"><span>Diplomatically — find the middle ground</span></label>
+        <label><input type="radio" name="conflict_style" value="I tend to avoid it and work around it"><span>I tend to avoid it and work around it</span></label>
+        <label><input type="radio" name="conflict_style" value="I get data to prove my point, then re-engage"><span>I get data to prove my point, then re-engage</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What motivates you most?</label>
+      <div class="q-hint">Pick your top 2.</div>
+      <div class="chip-group">
+        <label><input type="checkbox" name="motivators" value="Money / Financial freedom"><span>Money / Financial freedom</span></label>
+        <label><input type="checkbox" name="motivators" value="Impact / Making a difference"><span>Impact / Making a difference</span></label>
+        <label><input type="checkbox" name="motivators" value="Recognition / Being the best"><span>Recognition / Being the best</span></label>
+        <label><input type="checkbox" name="motivators" value="Learning / Mastering new things"><span>Learning / Mastering new things</span></label>
+        <label><input type="checkbox" name="motivators" value="Autonomy / Being my own boss"><span>Autonomy / Being my own boss</span></label>
+        <label><input type="checkbox" name="motivators" value="Team / Being part of something bigger"><span>Team / Being part of something bigger</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Describe your ideal workday in 2-3 sentences</label>
+      <div class="q-hint">What does a day look like where you go to bed feeling like you crushed it?</div>
+      <textarea id="q_ideal_day" rows="3" placeholder="e.g. I wake up, check my pipeline, hop on 3-4 calls with warm leads, close one deal..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What's your writing style like?</label>
+      <div class="q-hint">If you were sending a cold email to a potential investor, how would it feel?</div>
+      <div class="chip-group">
+        <label><input type="radio" name="writing_style" value="Professional and polished"><span>Professional and polished</span></label>
+        <label><input type="radio" name="writing_style" value="Conversational and warm"><span>Conversational and warm</span></label>
+        <label><input type="radio" name="writing_style" value="Short and punchy"><span>Short and punchy</span></label>
+        <label><input type="radio" name="writing_style" value="I struggle with writing tbh"><span>I struggle with writing tbh</span></label>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What phrases or words do you naturally use a lot?</label>
+      <div class="q-hint">Your verbal tics, catchphrases, how you greet people, your sign-offs. This helps us make your AI sound like YOU.</div>
+      <textarea id="q_catchphrases" rows="3" placeholder="e.g. I always say 'Let's get it', I sign off emails with 'Talk soon', I call people 'brother'..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What tone do you NOT want an AI representing you to use?</label>
+      <div class="q-hint">Dealbreakers. Things that would make you cringe if a bot sent it in your name.</div>
+      <textarea id="q_tone_avoid" rows="2" placeholder="e.g. Don't be salesy, no corporate jargon, never use exclamation points..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevSection()">← Back</button>
+      <button class="btn btn-next" onclick="nextSection()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ============== SECTION 8: THE BIG PICTURE ============== -->
+  <div class="section" data-section="8">
+    <div class="section-header">
+      <div class="section-number">Part 8 of 8</div>
+      <h2>The Big Picture</h2>
+      <p>Last section. Let's talk about where you want to go.</p>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Why do you want to be part of EWO / AC?</label>
+      <div class="q-hint">Be honest. Money? Mission? Both? What drew you in?</div>
+      <textarea id="q_why_ewo" rows="4" placeholder="What made you want to be part of this?"></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Where do you see yourself in 12 months if everything goes right?</label>
+      <textarea id="q_12mo_vision" rows="3" placeholder="e.g. Full-time at EWO, running investor relations, earning $X/month..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">What's holding you back from going full-time right now?</label>
+      <div class="q-hint">Financial runway? Another job? Uncertainty? No judgment — we need to know so we can solve it.</div>
+      <textarea id="q_blockers" rows="3" placeholder="e.g. I still have my day job and need to make at least $X before I can jump..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">How many hours per week can you commit RIGHT NOW?</label>
+      <select id="q_hours_available">
+        <option value="">Select one...</option>
+        <option value="Under 10 hours">Under 10 hours</option>
+        <option value="10–20 hours">10–20 hours</option>
+        <option value="20–30 hours">20–30 hours</option>
+        <option value="30–40 hours (basically full-time)">30–40 hours (basically full-time)</option>
+        <option value="40+ hours — I'm all in">40+ hours — I'm all in</option>
+      </select>
+    </div>
+
+    <div class="q-card">
+      <label class="q-label">Is there anything we haven't asked that you want us to know?</label>
+      <div class="q-hint">Hidden talents, side projects, something you've been wanting to say — drop it here.</div>
+      <textarea id="q_wildcard" rows="4" placeholder="Anything else..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="prevSection()">← Back</button>
+      <button class="btn btn-submit" onclick="submitSurvey()">Submit My Answers ✓</button>
+    </div>
+  </div>
+
+  <!-- ============== RESULTS ============== -->
+  <div class="section" data-section="results">
+    <div class="section-header">
+      <h2>All done! 🎯</h2>
+      <p>Your answers have been sent to Sami automatically. A copy is also below in case you want to keep it. This will be used to figure out your ideal role and build your AI toolkit.</p>
+    </div>
+
+    <div class="results-card">
+      <h3>Your Profile Data (JSON)</h3>
+      <pre class="json-output" id="jsonOutput"></pre>
+      <button class="copy-btn" onclick="copyJSON()">📋 Copy to clipboard</button>
+    </div>
+
+    <div class="results-card">
+      <h3>Quick Summary</h3>
+      <div id="summaryOutput" style="font-size:14px; color: var(--text-muted); line-height: 1.7;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentSection = 1;
+  const totalSections = 8;
+
+  // Skills to rate
+  const skills = [
+    { id: 'skill_sales', label: 'Sales / Closing deals' },
+    { id: 'skill_fundraising', label: 'Fundraising / Capital raising' },
+    { id: 'skill_networking', label: 'Networking / Relationship building' },
+    { id: 'skill_marketing', label: 'Marketing / Content creation' },
+    { id: 'skill_social_media', label: 'Social media management' },
+    { id: 'skill_public_speaking', label: 'Public speaking / Presentations' },
+    { id: 'skill_writing', label: 'Writing (emails, proposals, copy)' },
+    { id: 'skill_research', label: 'Research / Due diligence' },
+    { id: 'skill_finance', label: 'Financial analysis / Modeling' },
+    { id: 'skill_ops', label: 'Operations / Project management' },
+    { id: 'skill_tech', label: 'Technology / Software tools' },
+    { id: 'skill_leadership', label: 'Team leadership / Management' },
+    { id: 'skill_customer_service', label: 'Customer / Client service' },
+    { id: 'skill_negotiation', label: 'Negotiation' },
+  ];
+
+  // Build skill sliders
+  const sc = document.getElementById('skills-container');
+  skills.forEach(s => {
+    const div = document.createElement('div');
+    div.style.marginBottom = '18px';
+    div.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:14px;">${s.label}</span>
+        <span class="slider-val" id="${s.id}_val" style="font-size:15px;">5</span>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" id="${s.id}" min="1" max="10" value="5"
+          oninput="document.getElementById('${s.id}_val').textContent=this.value">
+      </div>
+    `;
+    sc.appendChild(div);
+  });
+
+  function updateProgress() {
+    const pct = Math.round(((currentSection - 1) / totalSections) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressSection').textContent = `Section ${currentSection} of ${totalSections}`;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function showSection(n) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    if (n === 'results') {
+      document.querySelector('[data-section="results"]').classList.add('active');
+      document.querySelector('.progress-wrap').style.display = 'none';
+    } else {
+      document.querySelector(`[data-section="${n}"]`).classList.add('active');
+      currentSection = n;
+      updateProgress();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextSection() {
+    if (currentSection < totalSections) showSection(currentSection + 1);
+  }
+  function prevSection() {
+    if (currentSection > 1) showSection(currentSection - 1);
+  }
+
+  function getChecked(name) {
+    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
+  }
+  function getRadio(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+  function val(id) {
+    const el = document.getElementById(id);
+    return el ? el.value : '';
+  }
+
+  function collectData() {
+    const skillRatings = {};
+    skills.forEach(s => { skillRatings[s.label] = parseInt(val(s.id)); });
+
+    return {
+      meta: {
+        survey_version: '1.0',
+        completed_at: new Date().toISOString(),
+        purpose: 'EWO Team Member Skills Audit & Agent Configuration'
+      },
+      basics: {
+        name: val('q_name'),
+        email: val('q_email'),
+        phone: val('q_phone'),
+        location: val('q_location'),
+        linkedin: val('q_linkedin')
+      },
+      background: {
+        career_story: val('q_career_story'),
+        industries: getChecked('industries'),
+        other_industry: val('q_other_industry'),
+        highest_role: val('q_highest_role'),
+        certifications: val('q_certifications')
+      },
+      skills: {
+        ratings: skillRatings,
+        top_skills: Object.entries(skillRatings).filter(([k,v]) => v >= 8).map(([k]) => k),
+        growth_areas: Object.entries(skillRatings).filter(([k,v]) => v <= 3).map(([k]) => k),
+        hidden_skills: val('q_hidden_skills')
+      },
+      network: {
+        size: val('q_network_size'),
+        types: getChecked('network_types'),
+        strategic_contacts: getChecked('strategic_contacts'),
+        fundraising_confidence: parseInt(val('q_raise_confidence')),
+        key_contacts: val('q_key_contacts')
+      },
+      ac_experience: {
+        alt_investment_familiarity: val('q_alt_invest_familiarity'),
+        capital_raising_history: val('q_capital_raising'),
+        compliance_knowledge: val('q_compliance_exp'),
+        crm_experience: val('q_crm_experience'),
+        self_assessed_ac_fit: getChecked('ac_fit')
+      },
+      work_style_and_ai: {
+        work_style: getChecked('work_style'),
+        current_tools: getChecked('tools'),
+        ai_comfort_level: parseInt(val('q_ai_comfort')),
+        ai_wish: val('q_ai_wish'),
+        biggest_time_waster: val('q_time_waster')
+      },
+      personality_and_voice: {
+        communication_style: getRadio('comm_style'),
+        conflict_style: getRadio('conflict_style'),
+        motivators: getChecked('motivators'),
+        ideal_workday: val('q_ideal_day'),
+        writing_style: getRadio('writing_style'),
+        catchphrases: val('q_catchphrases'),
+        tone_to_avoid: val('q_tone_avoid')
+      },
+      big_picture: {
+        why_ewo: val('q_why_ewo'),
+        twelve_month_vision: val('q_12mo_vision'),
+        current_blockers: val('q_blockers'),
+        weekly_hours_available: val('q_hours_available'),
+        wildcard: val('q_wildcard')
+      }
+    };
+  }
+
+  function submitSurvey() {
+    const data = collectData();
+    const json = JSON.stringify(data, null, 2);
+    document.getElementById('jsonOutput').textContent = json;
+
+    // Generate summary
+    const topSkills = data.skills.top_skills.length > 0
+      ? data.skills.top_skills.join(', ')
+      : 'No skills rated 8+ yet';
+    const growthAreas = data.skills.growth_areas.length > 0
+      ? data.skills.growth_areas.join(', ')
+      : 'No major gaps (all rated 4+)';
+
+    const summary = `
+      <p><strong>Name:</strong> ${data.basics.name || 'Not provided'}</p>
+      <p><strong>Top Skills (8+):</strong> ${topSkills}</p>
+      <p><strong>Growth Areas (3 or below):</strong> ${growthAreas}</p>
+      <p><strong>Network Size:</strong> ${data.network.size || 'Not specified'}</p>
+      <p><strong>Fundraising Confidence:</strong> ${data.network.fundraising_confidence}/10</p>
+      <p><strong>Alt Investment Knowledge:</strong> ${data.ac_experience.alt_investment_familiarity || 'Not specified'}</p>
+      <p><strong>AI Comfort:</strong> ${data.work_style_and_ai.ai_comfort_level}/10</p>
+      <p><strong>Hours Available:</strong> ${data.big_picture.weekly_hours_available || 'Not specified'}</p>
+      <p><strong>Communication Style:</strong> ${data.personality_and_voice.communication_style || 'Not specified'}</p>
+      <p><strong>Writing Style:</strong> ${data.personality_and_voice.writing_style || 'Not specified'}</p>
+      <p><strong>Self-Assessed AC Fit:</strong> ${data.ac_experience.self_assessed_ac_fit.join(', ') || 'Not specified'}</p>
+    `;
+    document.getElementById('summaryOutput').innerHTML = summary;
+
+    // Send data to Sami via FormSubmit (free, no signup)
+    const submitBtn = document.querySelector('.btn-submit');
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    fetch('https://formsubmit.co/ajax/sami.rae24@icloud.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: `EWO Profile Submission — ${data.basics.name || 'Unknown'}`,
+        _template: 'table',
+        Name: data.basics.name,
+        Email: data.basics.email,
+        Phone: data.basics.phone,
+        Location: data.basics.location,
+        LinkedIn: data.basics.linkedin,
+        'Career Story': data.background.career_story,
+        Industries: data.background.industries.join(', '),
+        'Highest Role': data.background.highest_role,
+        Certifications: data.background.certifications,
+        'Top Skills (8+)': topSkills,
+        'Growth Areas (3-)': growthAreas,
+        'All Skill Ratings': Object.entries(data.skills.ratings).map(([k,v]) => `${k}: ${v}/10`).join(' | '),
+        'Hidden Skills': data.skills.hidden_skills,
+        'Network Size': data.network.size,
+        'Network Types': data.network.types.join(', '),
+        'Strategic Contacts': data.network.strategic_contacts.join(', '),
+        'Fundraising Confidence': `${data.network.fundraising_confidence}/10`,
+        'Key Contacts': data.network.key_contacts,
+        'Alt Investment Familiarity': data.ac_experience.alt_investment_familiarity,
+        'Capital Raising History': data.ac_experience.capital_raising_history,
+        'Compliance Knowledge': data.ac_experience.compliance_knowledge,
+        'CRM Experience': data.ac_experience.crm_experience,
+        'AC Fit': data.ac_experience.self_assessed_ac_fit.join(', '),
+        'Work Style': data.work_style_and_ai.work_style.join(', '),
+        'Current Tools': data.work_style_and_ai.current_tools.join(', '),
+        'AI Comfort': `${data.work_style_and_ai.ai_comfort_level}/10`,
+        'AI Wish': data.work_style_and_ai.ai_wish,
+        'Time Waster': data.work_style_and_ai.biggest_time_waster,
+        'Communication Style': data.personality_and_voice.communication_style,
+        'Conflict Style': data.personality_and_voice.conflict_style,
+        Motivators: data.personality_and_voice.motivators.join(', '),
+        'Ideal Workday': data.personality_and_voice.ideal_workday,
+        'Writing Style': data.personality_and_voice.writing_style,
+        Catchphrases: data.personality_and_voice.catchphrases,
+        'Tone to Avoid': data.personality_and_voice.tone_to_avoid,
+        'Why EWO': data.big_picture.why_ewo,
+        '12-Month Vision': data.big_picture.twelve_month_vision,
+        'Current Blockers': data.big_picture.current_blockers,
+        'Hours Available': data.big_picture.weekly_hours_available,
+        Wildcard: data.big_picture.wildcard,
+        'Full JSON': json
+      })
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log('FormSubmit response:', result);
+      showSection('results');
+    })
+    .catch(error => {
+      console.error('Submit error:', error);
+      // Still show results — they can copy the JSON as backup
+      showSection('results');
+      document.getElementById('summaryOutput').innerHTML += '<p style="color: var(--warning); margin-top: 12px;">⚠️ Auto-send may have failed. Please copy the JSON below and send it to Sami directly.</p>' + summary;
+    });
+  }
+
+  function copyJSON() {
+    const text = document.getElementById('jsonOutput').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy to clipboard'; }, 2000);
+    });
+  }
+
+  // Init
+  updateProgress();
+</script>
 </body>
 </html>
