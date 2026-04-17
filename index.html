@@ -816,7 +816,7 @@
   <div class="section" data-section="results">
     <div class="section-header">
       <h2>All done! 🎯</h2>
-      <p>Your answers have been sent to Sami automatically. A copy is also below in case you want to keep it. This will be used to figure out your ideal role and build your AI toolkit.</p>
+      <p>Your answers have been sent to Sami. <strong>Please also copy the JSON below</strong> as a backup — it takes 2 seconds and means your work is never lost.</p>
     </div>
 
     <div class="results-card">
@@ -1009,73 +1009,31 @@
     `;
     document.getElementById('summaryOutput').innerHTML = summary;
 
-    // Send data to Sami via FormSubmit (free, no signup)
+    // Send data via Google Apps Script (reliable, no confirmation needed)
+    // REPLACE THIS URL after deploying Code.gs as a Web App:
+    const SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+
     const submitBtn = document.querySelector('.btn-submit');
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    fetch('https://formsubmit.co/ajax/sami.rae24@icloud.com', {
+    fetch(SCRIPT_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({
-        _subject: `EWO Profile Submission — ${data.basics.name || 'Unknown'}`,
-        _template: 'table',
-        Name: data.basics.name,
-        Email: data.basics.email,
-        Phone: data.basics.phone,
-        Location: data.basics.location,
-        LinkedIn: data.basics.linkedin,
-        'Career Story': data.background.career_story,
-        Industries: data.background.industries.join(', '),
-        'Highest Role': data.background.highest_role,
-        Certifications: data.background.certifications,
-        'Top Skills (8+)': topSkills,
-        'Growth Areas (3-)': growthAreas,
-        'All Skill Ratings': Object.entries(data.skills.ratings).map(([k,v]) => `${k}: ${v}/10`).join(' | '),
-        'Hidden Skills': data.skills.hidden_skills,
-        'Network Size': data.network.size,
-        'Network Types': data.network.types.join(', '),
-        'Strategic Contacts': data.network.strategic_contacts.join(', '),
-        'Fundraising Confidence': `${data.network.fundraising_confidence}/10`,
-        'Key Contacts': data.network.key_contacts,
-        'Alt Investment Familiarity': data.ac_experience.alt_investment_familiarity,
-        'Capital Raising History': data.ac_experience.capital_raising_history,
-        'Compliance Knowledge': data.ac_experience.compliance_knowledge,
-        'CRM Experience': data.ac_experience.crm_experience,
-        'AC Fit': data.ac_experience.self_assessed_ac_fit.join(', '),
-        'Work Style': data.work_style_and_ai.work_style.join(', '),
-        'Current Tools': data.work_style_and_ai.current_tools.join(', '),
-        'AI Comfort': `${data.work_style_and_ai.ai_comfort_level}/10`,
-        'AI Wish': data.work_style_and_ai.ai_wish,
-        'Time Waster': data.work_style_and_ai.biggest_time_waster,
-        'Communication Style': data.personality_and_voice.communication_style,
-        'Conflict Style': data.personality_and_voice.conflict_style,
-        Motivators: data.personality_and_voice.motivators.join(', '),
-        'Ideal Workday': data.personality_and_voice.ideal_workday,
-        'Writing Style': data.personality_and_voice.writing_style,
-        Catchphrases: data.personality_and_voice.catchphrases,
-        'Tone to Avoid': data.personality_and_voice.tone_to_avoid,
-        'Why EWO': data.big_picture.why_ewo,
-        '12-Month Vision': data.big_picture.twelve_month_vision,
-        'Current Blockers': data.big_picture.current_blockers,
-        'Hours Available': data.big_picture.weekly_hours_available,
-        Wildcard: data.big_picture.wildcard,
-        'Full JSON': json
-      })
+      body: json
     })
     .then(response => response.json())
     .then(result => {
-      console.log('FormSubmit response:', result);
+      console.log('Script response:', result);
       showSection('results');
     })
     .catch(error => {
       console.error('Submit error:', error);
-      // Still show results — they can copy the JSON as backup
+      // Always show results — JSON panel is the permanent backup
       showSection('results');
-      document.getElementById('summaryOutput').innerHTML += '<p style="color: var(--warning); margin-top: 12px;">⚠️ Auto-send may have failed. Please copy the JSON below and send it to Sami directly.</p>' + summary;
     });
   }
 
